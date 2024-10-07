@@ -2,19 +2,19 @@ package com.Dio_soares.cardapioRu;
 
 public class Menu {
 
-// Atributos
+    // Atributos
     private String dia;
     private String turno;
     private Refeicao refeicao;
 
-// Construtor
-    public Menu (String dia, String turno, Refeicao refeicao){
+    // Construtor
+    public Menu(String dia, String turno, Refeicao refeicao) {
         this.dia = dia;
         this.turno = turno;
         this.refeicao = refeicao;
     }
 
-// Metodos
+    // Metodos
     public String getDia() {
         return dia;
     }

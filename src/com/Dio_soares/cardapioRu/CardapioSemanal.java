@@ -6,7 +6,7 @@ public class CardapioSemanal {
 
     // Lista cardápio
     private ArrayList<Menu> cardapio;
-    private final String[] diasDaSemana = {"Segunda-feira ", "Terça-feira ", "Quarta-feira ", "Quinta-feira " + "Sexta-feira"};
+    private final String[] diasDaSemana = {"Segunda-feira ", "Terça-feira ", "Quarta-feira ", "Quinta-feira " + "Sexta-feira "};
     private final String[] turnos = {"Manhã ", "Tarde ", "Noite"};
 
     // Construtor
@@ -26,6 +26,7 @@ public class CardapioSemanal {
             if (menu != null) {
                 String dia = diasDaSemana[i /3];
                 String turno = turnos[i % 3];
+                System.out.println("Menu do dia: " + dia + " - Turno: " + turno);
                 System.out.println("Salada: " + menu.getRefeicao().getSalada().getNome());
                 System.out.println("Prato Principal: " + menu.getRefeicao().getPratoPrincipal().getNome());
                 System.out.println("Acompanhamento: " + menu.getRefeicao().getAcompanhamento().getNome());

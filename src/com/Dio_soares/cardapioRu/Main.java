@@ -7,38 +7,54 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         CardapioSemanal cardapioSemanal = new CardapioSemanal();
 
-        System.out.println("====Bem-Vindo ao sistema de cadastro do RU====");
-        System.out.println("Por favor, insira os detalhes das refeições para cada dia e turno...");
+        System.out.println("Bem-vindo ao sistema de cadastro de cardápio do RU.");
 
-        // Loop para inserir refeições para cada dia e turno
-        for (String dia : cardapioSemanal.getDiasDaSemana()) {
-            for (String turno : cardapioSemanal.getTurnos()) {
-                System.out.println("Cadastrar refeição para " + dia + " (" + turno + ")");
+        boolean continuar = true;
 
-                // Solicitar os alimentos
-                System.out.print("Nome da salada: ");
-                String saladaNome = scanner.nextLine();
-                Alimento salada = new Alimento(saladaNome);
+        
+        while (continuar) {
+            System.out.println("Por favor, insira os detalhes das refeições.");
 
-                System.out.print("Nome do prato principal: ");
-                String pratoPrincipalNome = scanner.nextLine();
-                Alimento pratoPrincipal = new Alimento(pratoPrincipalNome);
+            for (String dia : cardapioSemanal.getDiasDaSemana()) {
+                for (String turno : cardapioSemanal.getTurnos()) {
+                    System.out.println("\nCadastrar refeição para " + dia + " (" + turno + ")");
 
-                System.out.print("Nome do acompanhamento: ");
-                String acompanhamentoNome = scanner.nextLine();
-                Alimento acompanhamento = new Alimento(acompanhamentoNome);
 
-                // Criar a refeição e o menu
-                Refeicao refeicao = new Refeicao(salada, pratoPrincipal, acompanhamento);
-                Menu menu = new Menu(dia, turno, refeicao);
+                    System.out.print("Digite o nome da salada: ");
+                    String saladaNome = scanner.nextLine().trim();
+                    Alimento salada = new Alimento(saladaNome);
 
-                // Adicionar o menu ao cardápio
-                cardapioSemanal.adicionarMenu(menu);
+                    System.out.print("Digite o nome do prato principal: ");
+                    String pratoPrincipalNome = scanner.nextLine().trim();
+                    Alimento pratoPrincipal = new Alimento(pratoPrincipalNome);
+
+                    System.out.print("Digite o nome do acompanhamento: ");
+                    String acompanhamentoNome = scanner.nextLine().trim();
+                    Alimento acompanhamento = new Alimento(acompanhamentoNome);
+
+                    Refeicao refeicao = new Refeicao(salada, pratoPrincipal, acompanhamento);
+                    Menu menu = new Menu(dia, turno, refeicao);
+
+                    cardapioSemanal.adicionarMenu(menu);
+
+                    System.out.println("\nDeseja continuar adicionando refeições ou imprimir o cardápio?");
+                    System.out.println("1 - Continuar cadastrando");
+                    System.out.println("2 - Imprimir cardápio");
+
+                    int opcao = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (opcao == 2) {
+                        continuar = false;
+                        cardapioSemanal.imprimirCardapio();
+                        break;
+                    }
+                }
+                if (!continuar) {
+                    break;
+                }
             }
         }
-
-        // Exibir o cardápio semanal completo
-        cardapioSemanal.imprimirCardapio();
 
         scanner.close();
     }
